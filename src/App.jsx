@@ -11,7 +11,8 @@ function App() {
 
             setRestaurants(restaurantsList);
     });
-    }, []);
+    },
+     []);
 
 return(
     <div>
