@@ -18,7 +18,7 @@ export default defineConfig({
       '/swiggy': {
         target: 'https://www.swiggy.com/',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/swiggy/, ''),
+        rewrite: (path) => path.replace(/^\/Swiggy/, ''),
       }
     }
   }
