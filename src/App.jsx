@@ -7,12 +7,12 @@ function App() {
         fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9628669&lng=77.57750899999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
         .then((response) => response.json())
         .then((data) => {
-            const restaurantsList = data.cards[4].card.card.gridElements.infoWithStyle.restaurants; 
+            const restaurantsList = data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
 
             setRestaurants(restaurantsList);
-    });
-    },
-     []);
+        })
+        .catch((err) => console.error('Fetch error:', err));
+    }, []);
 
 return(
     <div>
@@ -25,7 +25,7 @@ return(
         <p>{restaurant.info.avgRating}</p>
         <p>{restaurant.info.cuisines.join(", ")}</p>
       </div>
-    ))}
+     ))}
     </div>
     </div>
 )
