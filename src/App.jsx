@@ -7,7 +7,7 @@ function App() {
         fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9628669&lng=77.57750899999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
         .then((response) => response.json())
         .then((data) => {
-            const restaurantsList = data.cards[0].card.card.gridElements.infoWithStyle.info || [];
+            const restaurantsList = data.card[0].card.card.gridElements.infoWithStyle.info || [];
             setRestaurants(restaurantsList);
         })
         .catch((err) => console.error('Fetch error:', err));
@@ -16,7 +16,7 @@ return(
     <div>
         <h1>Restaurants in Jalandhar</h1>
     <div style={{display:"grid", gridTemplateColumns:"repeat(5, 1fr)", gap:"10px", padding:"10px"}}>
-    {restaurants.map((restaurant) => (
+    {restaurants.map((info) => (
       <div key={info.id} style={{transition:"transform 0.2s", "&:hover":{transform:"scale(1.05)"},border:"1px solid #e2dfdfff", borderRadius:"5px", overflow:"hidden", boxShadow:"0 4px 8px rgba(0, 0, 0, 0.1)", hover:"shadow-lg", hoverTransform:"scale(1.05)"}}>
         <div style={{cursor:"pointer", display:"flex", justifyContent:"center", alignItems:"center", marginTop:"5px",marginBottom:"-20px"}}>
         <img style={{width:"230px", height:"200px", borderRadius:"8px",}} src={`https://media-assets.swiggy.com/swiggy/image/upload/${info.ImageId}`} alt={info.action.link} />
